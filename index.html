@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Previo Web - H1 Jorge Saul Castillo Jaimes 2111127</title>
+<!-- jQuery UI y jQuery -->
+<link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+<script src="jquery-ui/jquery-3.5.1.js"></script>
+<script src="jquery-ui/jquery-ui.js"></script>
+<link rel="icon" type="image/png" href="images/LOGO_UIS_SOLO.png" />
+<!-- Para que los titles se vean mas cool, funcion de jQueryUI -->
+<script>
+ 	$( function() {
+    	$( document ).tooltip();
+  	});
+
+	$(document).ready(function(){
+		$("editRow").click(function(){
+			if(editando == false){
+				var tdP = $(this).parent()[0];
+				thisID = "#"+$(this).parent().parent().attr("id");
+				thisIDedit = thisID+"edit";
+				editando = true;
+				nEdit = ($(tdP).parent().parent().children().index($(tdP).parent()))/2;
+				$(thisIDedit+" > td:eq(0) > input").width($(thisID+" > td:eq(0)").width()-14);
+				$(thisIDedit+" > td:eq(1) > input").width($(thisID+" > td:eq(1)").width()-14);
+				$(thisIDedit+" > td:eq(1) > input").attr('step', 1);
+				$(thisIDedit+" > td:eq(1) > input").attr('min', 1);
+				$(thisIDedit+" > td:eq(2) > input").width($(thisID+" > td:eq(2)").width()-14);
+				$(thisIDedit+" > td:eq(2) > input").attr('step', 0.1);
+				$(thisIDedit+" > td:eq(2) > input").attr('min', 0);
+				$(thisIDedit+" > td:eq(3) > input").width($(thisID+" > td:eq(3)").width()-14);
+				$(thisIDedit+" > td:eq(3) > input").attr('step', 0.1);
+				$(thisIDedit+" > td:eq(3) > input").attr('min', 0);
+				$(thisIDedit+" > td:eq(4) > input").width($(thisID+" > td:eq(4)").width()-14);
+				$(thisIDedit+" > td:eq(4) > input").attr('step', 0.1);
+				$(thisIDedit+" > td:eq(4) > input").attr('min', 0);
+				$(thisIDedit+" > td:eq(5) > select").width($(thisID+" > td:eq(5)").width()-14);
+				$(thisID).hide();
+				$(thisIDedit).show();
+				$("div.changeAlimentos").show();
+			}else{
+				alert("ERROR - Solo se puede editar una fila a la vez y ya está editando la fila "+nEdit+" => '"+datos[nEdit-1].alimento+"'. Recargue la página para poder editar otra.");
+			}
+		});
+		$("button.btnAceptar").click(function(){
+			var ali = $(thisIDedit+" > td:eq(0) > input").val();
+			var cal = $(thisIDedit+" > td:eq(1) > input").val();
+			var gra = $(thisIDedit+" > td:eq(2) > input").val();
+			var pro = $(thisIDedit+" > td:eq(3) > input").val();
+			var car = $(thisIDedit+" > td:eq(4) > input").val();
+			var est = $(thisIDedit+" > td:eq(5) > select").val();
+			if(est == "true"){
+				var estado = true;
+			}else{
+				var estado = false;
+			}
+			console.log(ali+" "+cal+" "+gra+" "+pro+" "+car+" "+est);
+			if ((ali != datos[nEdit-1].alimento) || (cal != datos[nEdit-1].calorias) || (gra != datos[nEdit-1].grasas) || (pro != datos[nEdit-1].proteina) || (car != datos[nEdit-1].carbohidratos) || (estado != datos[nEdit-1].estado)){
+
+				var formulario = "#frow"+(nEdit-1).toString();
+				$(formulario).submit();
+			}else{
+				alert("NO SE PUEDE REALIZAR CAMBIO porque no ha realizado ningún cambio en los datos del alimento. Favor realice el cambio respectivo e intente de nuevo.");
+				$("button.btnCancelar").trigger("click");
+			}
+		});
+		$("button.btnCancelar").click(function(){
+			$(thisID).show();
+			$(thisIDedit).hide();
+			$("div.changeAlimentos").hide();
+			editando = false;
+			nEdit = -1;
+			var nData = Number(thisID.substring(thisID.indexOf("w")+1));
+			$(thisIDedit+" > td:eq(0) > input").val(datos[nData].alimento);
+			$(thisIDedit+" > td:eq(1) > input").val(datos[nData].calorias);
+			$(thisIDedit+" > td:eq(2) > input").val(datos[nData].grasas);
+			$(thisIDedit+" > td:eq(3) > input").val(datos[nData].proteina);
+			$(thisIDedit+" > td:eq(4) > input").val(datos[nData].carbohidratos);
+			if(datos[nData].estado == true){
+				$(thisIDedit+" > td:eq(5) > select > option[value='true']").attr("selected", true);
+			}else{
+				$(thisIDedit+" > td:eq(5) > select > option[value='false']").attr("selected", true);
+			}
+		});
+	});
+
+</script>
+<!-- Hoja de Estilos CSS -->
+<link rel="stylesheet" href="css/styles.css" />
+<!-- Funciones propias en JS -->
+<script type="text/javascript" src="js/funciones.js"></script>
+<!-- Iconos descargados: 
+- https://www.flaticon.com/packs/emotions-rounded
+Editados por mi en GIMP
+-->
+</head>
+<body>
+	<div style="position: absolute; height: 98%; min-height: 98%; width: 98%">
+		<div style="height: 100%; width: 920px; display: table; margin-left: auto; margin-right: auto;">
+			<div class="div-table1">
+				<div style="text-align: center;"><h1>Tabla de Calor&iacute;as</h1></div>
+				<div class="div-border1">
+					<table class="cal-table">
+						<tr id="Header">
+							<th style="width: 110px;">Alimento</th>
+							<th style="width: 100px;">Calor&iacute;as<br>[kCal]</th>
+							<th style="width: 84px;">Grasas<br>[g]</th>
+							<th style="width: 100px;">Prote&iacute;na<br>[g]</th>
+							<th style="width: 170px;">Carbohidratos<br>[g]</th>
+							<th style="width: 108px;">OK</th>
+							<th>Opciones</th>
+						</tr>
+						<script type="text/javascript">
+							for(var i = 0; i < datos.length; i++){
+								if(datos[i].estado == true){
+									strSelImg = "<option value=\"true\" selected=\"true\">Bueno</option>"+
+									"<option value=\"false\">Malo</option>";
+								}else{
+									strSelImg = "<option value=\"true\">Bueno</option>"+
+									"<option value=\"false\" selected=\"true\">Malo</option>";
+								}
+								strHtml = "<tr id=\"row"+i.toString()+"\">"+
+								"<td>"+datos[i].alimento+"</td>"+
+								"<td>"+datos[i].calorias+"</td>"+
+								"<td>"+datos[i].grasas+"</td>"+
+								"<td>"+datos[i].proteina+"</td>"+
+								"<td>"+datos[i].carbohidratos+"</td>" +
+								"<td><img src="+returnImage(datos[i].estado)+" title="+returnTitleImg(datos[i].estado)+" class=\"imgTable\"></td>" +
+								"<td class=\"edit-row\"><editRow title=\"Presione para editar datos del alimento '"+datos[i].alimento+"'\">Editar</editRow></td>"+
+								"</tr>"+
+								"<tr id=\"row"+i.toString()+"edit\" style=\"display: none;\">"+
+								"<form action=\"recibido.html\" method=\"get\" id=\"frow"+i.toString()+"\">"+
+								"<td><input type=\"text\" name=\"alimento\" autocomplete=\"off\" value="+datos[i].alimento+"></td>"+
+								"<td><input type=\"number\" name=\"calorias\" autocomplete=\"off\" value="+datos[i].calorias+"></td>"+
+								"<td><input type=\"number\" name=\"grasas\" autocomplete=\"off\" value="+datos[i].grasas+"></td>"+
+								"<td><input type=\"number\" name=\"proteina\" autocomplete=\"off\" value="+datos[i].proteina+"></td>"+
+								"<td><input type=\"number\" name=\"carbohidratos\" autocomplete=\"off\" value="+datos[i].carbohidratos+"></td>" +
+								"<td><select name=\"estado\">"+
+								strSelImg+
+								"</select></td>" +
+								"<td class=\"editing\">En edici&oacute;n</td>"+
+								"</form></tr>";
+								document.write(strHtml);
+							}
+						</script>
+					</table>
+					<div class="postTable">
+					Contenido nutricional por cada 100g de alimento.
+					</div>
+					<div class="changeAlimentos">
+						<hr>
+						Pulse 'Aceptar' para guardar los cambios o 'Cancelar' para anularlos<br>
+						<button class="btnAceptar">Aceptar</button>
+						<button class="btnCancelar">Cancelar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

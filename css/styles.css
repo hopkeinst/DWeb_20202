@@ -1,0 +1,232 @@
+/* Colores sacados en formato hexa de https://htmlcolorcodes.com/es/ */
+
+html {
+  min-height: 98%;
+  height: 98%;
+}
+
+.div-table1{
+	text-align: center;
+	font-size: 21px;
+	font-family: 'Arial', Gadget, sans-serif;
+	margin-left: auto;
+	margin-right: auto;
+	vertical-align: middle;
+    display:table-cell;
+}
+
+.div-table1 h1{
+	font-size: 37px !important;
+	font-weight: bold;
+}
+
+.div-border1 {
+	border-width: 1px;
+	border-color: #cccccc;
+	border-style: solid;
+	border-radius: 20px;
+	padding: 20px;
+}
+
+table.cal-table{
+	border-top-width: 4px;
+	border-top-style: solid;
+	border-top-color: #acbbff;
+	border-left-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	color: #ffffff;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table.cal-table th{
+	background-color: #324d66;
+	padding: 5px;
+	border-style: none;
+}
+
+table.cal-table tr{
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #ffffff;
+	background-color: #5c5d62;
+	border-top-style: none;
+	border-left-style: none;
+	border-right-style: none;
+}
+
+table.cal-table tr:hover{
+	background-color: #979ba3;
+}
+
+table.cal-table td{
+	padding: 5px;
+	border-top-style: none;
+	border-left-style: none;
+	border-right-style: none;
+}
+
+.imgTable{
+	width: 50px;
+}
+
+.edit-row{
+	color: #d47a00;
+}
+
+editRow{
+	cursor: pointer;
+}
+
+input, select{
+	padding: 5px;
+	border-radius: 10px;
+	text-align: center;
+	width: 10px;
+}
+
+.editing{
+	color: #777777;
+}
+
+.postTable{
+	margin-top: 10px;
+	text-align: left;
+	color: #777777;
+	font-size: 17px;
+}
+
+.changeAlimentos{
+	display: none;
+	margin-top: 25px;
+	font-size: 19px;
+}
+
+button{
+	border: none;
+	background-color: white;
+	padding: 15px 30px;
+	display: inline-block;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	font-size: 19px;
+	margin-top: 10px;
+}
+
+.btnAceptar{
+	border-width: 2px;
+	border-style: solid;
+	border-color: #00c5ff;
+	border-radius: 10px;
+	color: #00c5ff;
+}
+
+.btnAceptar:hover{
+	background-color: #00c5ff;
+	color: #ffffff;
+	font-size: 21px;
+	padding: 14px 29px;
+}
+
+.btnCancelar{
+	border-width: 2px;
+	border-style: solid;
+	border-color: #606060;
+	border-radius: 10px;
+	color: #606060;
+}
+
+.btnCancelar:hover{
+	background-color: #606060;
+	color: #ffffff;
+	font-size: 21px;
+	padding: 14px 29px;
+}
+
+.div-border2{
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table.rTable{
+	background-color: #f7f7f7;
+	width: 100%;
+	border-collapse: collapse;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+}
+
+table.rTable th:first-child{
+	border-style: none !important;
+	background-color: #17a2b7;
+	border-top-left-radius: 15px;
+	padding: 5px;
+	color: #ffffff;
+}
+
+table.rTable th:last-child{
+	border-style: none !important;
+	background-color: #1e9cb6;
+	border-top-right-radius: 15px;
+	padding: 5px;
+	color: #ffffff;
+}
+
+table.rTable tr.info td{
+	border-color: #f1e1aa;
+	border-width: 1px;
+	border-bottom-style: solid;
+	padding: 10px;
+}
+
+table.rTable tr.info td:first-child{
+	border-color: #f1e1aa;
+	border-width: 1px;
+	border-left-style: solid;
+	text-align: left;
+	padding-left: 20px;
+}
+
+table.rTable tr.info td:last-child{
+	border-color: #f1e1aa;
+	border-width: 1px;
+	border-right-style: solid;
+	text-align: right;
+	padding-right: 20px;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+#nCal{
+	background-color: #0480fb;
+	width: min-content;
+	padding: 7px;
+	border-radius: 5px;
+	float:right;
+}
+
+#nGra{
+	background-color: #1e9cb6;
+	width: min-content;
+	padding: 7px;
+	border-radius: 5px;
+	float:right;
+}
+
+#nPro{
+	background-color: #1fa74b;
+	width: min-content;
+	padding: 7px;
+	border-radius: 5px;
+	float:right;
+}
+
+#nCar{
+	background-color: #dc3546;
+	width: min-content;
+	padding: 7px;
+	border-radius: 5px;
+	float:right;
+}

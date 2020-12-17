@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Cambios Recibidos - H1 Jorge Saul Castillo Jaimes 2111127</title>
+<!-- jQuery UI y jQuery -->
+<link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+<script src="jquery-ui/jquery-3.5.1.js"></script>
+<script src="jquery-ui/jquery-ui.js"></script>
+<link rel="icon" type="image/png" href="images/LOGO_UIS_SOLO.png" />
+<!-- Para que los titles se vean mas cool, funcion de jQueryUI -->
+<script>
+ 	$( function() {
+    	$( document ).tooltip();
+  	});
+
+	$(document).ready(function(){
+		// Función para desconcatenar los parámetros, pasados por el GET
+	  	var getUrlParameter = function getUrlParameter(sParam) {
+		    var sPageURL = window.location.search.substring(1),
+		        sURLVariables = sPageURL.split('&'),
+		        sParameterName,
+		        i;
+
+		    for (i = 0; i < sURLVariables.length; i++) {
+		        sParameterName = sURLVariables[i].split('=');
+
+		        if (sParameterName[0] === sParam) {
+		            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+		        }
+		    }
+		};
+		var ali = getUrlParameter('alimento');
+		var cal = getUrlParameter('calorias');
+		var gra = getUrlParameter('grasas');
+		var pro = getUrlParameter('proteina');
+		var car = getUrlParameter('carbohidratos');
+		var est = getUrlParameter('estado');
+
+		if(est == "true"){
+			$("#imgEst").attr("src","images/good.png");
+		}else{
+			$("#imgEst").attr("src","images/bad.png");
+		}
+		$("#imgEst").attr("width","120px");
+		$("#nAli").text(ali);
+		$("#nCal").text(cal);
+		$("#nGra").text(gra);
+		$("#nPro").text(pro);
+		$("#nCar").text(car);
+	});
+</script>
+<!-- Hoja de Estilos CSS -->
+<link rel="stylesheet" href="css/styles.css" />
+<!-- Funciones propias en JS -->
+<script type="text/javascript" src="js/funciones.js"></script>
+<!-- Iconos descargados: 
+- https://www.flaticon.com/packs/emotions-rounded
+Editados por mi en GIMP
+-->
+</head>
+<body>
+	<div style="position: absolute; height: 98%; min-height: 98%; width: 98%">
+		<div style="height: 100%; width: 920px; display: table; margin-left: auto; margin-right: auto;">
+			<div class="div-table1">
+				<div style="text-align: center;"><h1>Resultado</h1></div>
+				<div class="div-border2">
+					<table class="rTable">
+						<tr><th colspan="2">
+							<table style="width: 100%;" class="interno">
+								<tr><td style="width: 45%;" rowspan="2"><img id="imgEst" src=""></td><td><h1 id="nAli"></h1></td></tr>
+								<tr><td>Alimento</td></tr>
+							</table>
+						</th></tr>
+						<tr class="info"><td style="width: 75%;">Calorías [kCal]</td><td style="width: 25%;"><div id="nCal"></div></td>
+						<tr class="info"><td>Grasas [g]</td><td><div id="nGra"></div></td>
+						<tr class="info"><td>Proteína [g]</td><td><div id="nPro"></div></td>
+						<tr class="info"><td>Carbohidratos [g]</td><td><div id="nCar"></div></td>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>
