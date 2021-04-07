@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+  <head> 
+    <title>CANVAS</title> 
+</head>
+
+  </head>
+  <body>
+    <h1>Sistema de votaciones ETITC</h1>
+    <div style="font-family: Arial; font-size: 1.2em;">Elija su candidato:</div><br>
+    
+    <select id="seleccion" style="font-family: Arial; font-size: 1em; padding: 5px; margin: 5px;">
+      <option value="0" text="Michael">Michael</option> 
+      <option value="1" text="Adriana">Adriana</option> 
+      <option value="2" text="Pablo">Pablo</option> 
+      <option value="3" text="Juan">Juan</option> 
+    </select>
+
+    <input type="button" value="Enviar" onclick="votar()" style="font-family: Arial; font-size: 1em; padding: 5px; margin: 5px;">
+    <br><br>
+     
+    <canvas id="MiCanvas" width="800" height="350" style="border: 2px solid gray;"></canvas>
+
+    <script>
+      var canvas = document.getElementById("MiCanvas");
+      var contexto = canvas.getContext("2d");
+
+      var vMichael = 0;
+      var vAdriana = 0;
+      var vPablo = 0;
+      var vJuan = 0;
+      var vTotal = 0;
+      var vMax = 0;
+       
+      contexto.beginPath();
+      // Recuadro Michael
+      contexto.fillStyle="rgba(0, 0, 255, 0.35)";
+      contexto.fillRect(0, 25, 200, 300);
+      // Recuadro Adriana
+      contexto.fillStyle="rgba(0, 100, 0, 0.35)";
+      contexto.fillRect(200, 25, 200, 300);
+      // Recuadro Pablo
+      contexto.fillStyle="rgba(100, 100, 0, 0.35)";
+      contexto.fillRect(400, 25, 200, 300);
+      // Recuadro Juan
+      contexto.fillStyle="rgba(0, 100, 100, 0.35)";
+      contexto.fillRect(600, 25, 200, 300);
+
+      contexto.fillStyle="rgb(0,0,0)";
+      contexto.font = "italic small-caps bold 1em arial";  
+      contexto.textAlign = "center";
+      contexto.fillText(vMichael.toString()+" votos", (1*(canvas.width/4)/2), 20);
+      contexto.fillText("Michael", (1*(canvas.width/4)/2), 345);
+      contexto.fillText(vAdriana.toString()+" votos", (3*(canvas.width/4)/2), 20);
+      contexto.fillText("Adriana", (3*(canvas.width/4)/2), 345);
+      contexto.fillText(vPablo.toString()+" votos", (5*(canvas.width/4)/2), 20);
+      contexto.fillText("Pablo", (5*(canvas.width/4)/2), 345);
+      contexto.fillText(vJuan.toString()+" votos", (7*(canvas.width/4)/2), 20);
+      contexto.fillText("Juan", (7*(canvas.width/4)/2), 345);
+
+      function votar(){
+        var e = document.getElementById("seleccion");
+        var voto = e.options[e.selectedIndex].value;
+        var candidato = e.options[e.selectedIndex].text;
+        alert("Votaste por el candidato "+candidato);
+        switch(voto){
+          case "0":
+            vMichael += 1;
+          break;
+          case "1":
+            vAdriana += 1;
+          break;
+          case "2":
+            vPablo += 1;
+          break;
+          case "3":
+            vJuan += 1;
+          break;
+        }
+        refrescar();
+      }
+
+      function refrescar(){
+        // Eliminar el recuadro
+        contexto.clearRect(0, 0, canvas.width, canvas.height);
+        // Calcular el total de votos
+        vTotal = vMichael + vAdriana + vJuan + vPablo;
+        // Se coloca la cantidad de votos, porcentaje y persona
+        contexto.fillStyle="rgb(0,0,0)";
+        contexto.fillText(vMichael.toString()+" votos ( "+((vMichael*100/vTotal).toFixed(2)).toString()+" % )", (1*(canvas.width/4)/2), 20);
+        contexto.fillText("Michael", (1*(canvas.width/4)/2), 345);
+        contexto.fillText(vAdriana.toString()+" votos ( "+((vAdriana*100/vTotal).toFixed(2)).toString()+" % )", (3*(canvas.width/4)/2), 20);
+        contexto.fillText("Adriana", (3*(canvas.width/4)/2), 345);
+        contexto.fillText(vPablo.toString()+" votos ( "+((vPablo*100/vTotal).toFixed(2)).toString()+" % )", (5*(canvas.width/4)/2), 20);
+        contexto.fillText("Pablo", (5*(canvas.width/4)/2), 345);
+        contexto.fillText(vJuan.toString()+" votos ( "+((vJuan*100/vTotal).toFixed(2)).toString()+" % )", (7*(canvas.width/4)/2), 20);
+        contexto.fillText("Juan", (7*(canvas.width/4)/2), 345);
+        // Los recuadros de fondo
+        contexto.fillStyle="rgba(0, 0, 255, 0.45)";
+        contexto.fillRect(0, 25, 200, 300);
+        // Recuadro Adriana
+        contexto.fillStyle="rgba(0, 100, 0, 0.45)";
+        contexto.fillRect(200, 25, 200, 300);
+        // Recuadro Pablo
+        contexto.fillStyle="rgba(100, 100, 0, 0.55)";
+        contexto.fillRect(400, 25, 200, 300);
+        // Recuadro Juan
+        contexto.fillStyle="rgba(0, 100, 100, 0.25)";
+        contexto.fillRect(600, 25, 200, 300);
+        // Encontrar el maximo de votos de todos
+        vMax = Math.max(vMichael, vAdriana, vPablo, vJuan);
+        // Recuadro Michael
+        contexto.fillStyle="rgb(0,0,225)";
+        contexto.fillRect(20, 325, 160, -Math.round(280*vMichael/vMax));
+        // Recuadro Adriana
+        contexto.fillStyle="rgb(0,100,0)";
+        contexto.fillRect(220, 325, 160, -Math.round(280*vAdriana/vMax));
+        // Recuadro Pablo
+        contexto.fillStyle="rgb(100,100,0)";
+        contexto.fillRect(420, 325, 160, -Math.round(280*vPablo/vMax));
+        // Recuadro Juan
+        contexto.fillStyle="rgb(0,100,100)";
+        contexto.fillRect(620, 325, 160, -Math.round(280*vJuan/vMax));
+      }       
+    </script>
+  </body>
+</html>
